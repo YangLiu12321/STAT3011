@@ -242,4 +242,6 @@ a<-transform(
 )
 
 
+write.csv(a,file="training_data.csv") #Export the dataset to the new .csv file
+
 
