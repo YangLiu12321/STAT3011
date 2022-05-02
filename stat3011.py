@@ -9,27 +9,26 @@ data = pd.read_csv("train.csv")
 
 
 #install the packages of changing the messy column name
-install.packages("janitor")
-library(janitor)
-colnames()
+install.packages("pyjanitor")
+library(pyjanitor)
 
-data<-read.csv("train (1)") #read the data from the pc
+data<-read.csv("train (1).csv") #read the data from the pc
 data<-clean_names(data) #changing the messy column names 
-colnames(data)
-data1<-data[,-1] #remove the first id column 
-data1<-data1[is.na(data1)] = 0 #remove all NA value in the data set
+colnames(data) #display the column names for refrences
+data1<-data[,-1] #remove the first useless id column 
+data1[is.na(data1)] = 0 #remove all NA value in the data set
 
-#we can check the level of the data in different variable first 
+#we can check the level of the data in different categorical variable first 
 factor(data1$ms_zoning)
 factor(data1$street)
 factor(data1$alley)
-#these are the example of listing all factor of the data in each variable
-#you can find the level by typing the remaining variable
+#these are the examples of listing all factor of the data in each variable
+#you can find the level by typing the same code on the remaining variable
 
 
 #these algorithm aims to change the categorical variable into numeric
 a<-transform(
-  a,
+  data1,
   ms_zoning  = as.integer(as.factor(ms_zoning))
 )
 
@@ -40,12 +39,12 @@ a<-transform(
 
 a<-transform(
   a,
-  alley  = as.integer(as.factor(alley))
+  lot_shape  = as.integer(as.factor(lot_shape))
 )
 
 a<-transform(
   a,
-  lot_shape  = as.integer(as.factor(lot_shape))
+  land_contour  = as.integer(as.factor(land_contour))
 )
 
 a<-transform(
